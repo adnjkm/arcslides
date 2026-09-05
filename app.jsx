@@ -4,12 +4,17 @@ import Slides,{titles} from './slides.jsx';
 
 function App(){
  const initial=Math.max(0,Math.min(Slides.length-1,(parseInt(location.hash.slice(1))||1)-1));
- const [index,setIndex]=useState(initial),[overview,setOverview]=useState(false),[help,setHelp]=useState(false),[scale,setScale]=useState(1);
+ const [index,setIndex]=useState(initial),[expanded,setExpanded]=useState(false),[scale,setScale]=useState(1);
  const roots=useRef([]),last=useRef(null),timers=useRef([]),animations=useRef([]),touch=useRef(null);
- const go=n=>{setOverview(false);setIndex(Math.max(0,Math.min(Slides.length-1,n)));};
- useEffect(()=>{const resize=()=>setScale(Math.min((innerWidth-48)/1440,(innerHeight-132)/900));resize();addEventListener('resize',resize);return()=>removeEventListener('resize',resize);},[]);
- const fullscreen=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.().catch(()=>{});
- useEffect(()=>{const key=e=>{if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;if(e.key===' '&&e.target.closest('button,a'))return;const k=e.key;if(['ArrowRight','ArrowLeft','PageDown','PageUp',' ','Home','End'].includes(k))e.preventDefault();if(['ArrowRight','PageDown',' '].includes(k))go(index+1);if(['ArrowLeft','PageUp'].includes(k))go(index-1);if(k==='Home')go(0);if(k==='End')go(Slides.length-1);if(k.toLowerCase()==='f')fullscreen();if(k.toLowerCase()==='o')setOverview(v=>!v);if(k==='?')setHelp(v=>!v);if(k==='Escape'){setOverview(false);setHelp(false);}};addEventListener('keydown',key);return()=>removeEventListener('keydown',key);},[index]);
+ const go=n=>{setIndex(Math.max(0,Math.min(Slides.length-1,n)));};
+ useEffect(()=>{const resize=()=>setScale(Math.min((innerWidth-(expanded?0:48))/1440,(innerHeight-(expanded?3:60))/900));resize();addEventListener('resize',resize);return()=>removeEventListener('resize',resize);},[expanded]);
+ const fullscreen=async()=>{
+  if(expanded){if(document.fullscreenElement)await document.exitFullscreen();setExpanded(false);return;}
+  setExpanded(true);
+  try{await document.documentElement.requestFullscreen?.();}catch{}
+ };
+ useEffect(()=>{const change=()=>setExpanded(!!document.fullscreenElement);document.addEventListener('fullscreenchange',change);return()=>document.removeEventListener('fullscreenchange',change);},[]);
+ useEffect(()=>{const key=e=>{if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;if(e.key===' '&&e.target.closest('button'))return;const k=e.key;if(['ArrowRight','ArrowLeft','PageDown','PageUp',' ','Home','End'].includes(k))e.preventDefault();if(['ArrowRight','PageDown',' '].includes(k))go(index+1);if(['ArrowLeft','PageUp'].includes(k))go(index-1);if(k==='Home')go(0);if(k==='End')go(Slides.length-1);if(k.toLowerCase()==='f')fullscreen();if(k==='Escape')setExpanded(false);};addEventListener('keydown',key);return()=>removeEventListener('keydown',key);},[index,expanded]);
  useEffect(()=>{const fn=()=>go((parseInt(location.hash.slice(1))||1)-1);addEventListener('hashchange',fn);return()=>removeEventListener('hashchange',fn);},[]);
  useLayoutEffect(()=>{
   timers.current.forEach(clearTimeout);animations.current.forEach(a=>a.cancel());timers.current=[];animations.current=[];
@@ -21,12 +26,12 @@ function App(){
   last.current=index;history.replaceState(null,'',`#${index+1}`);
  },[index]);
  return <main onTouchStart={e=>touch.current=e.changedTouches[0].clientX} onTouchEnd={e=>{if(touch.current!==null){const d=e.changedTouches[0].clientX-touch.current;if(Math.abs(d)>70)go(index+(d<0?1:-1));touch.current=null;}}}>
-  <header><div className="brand">ARC<span>ROBOTICS</span><i/>UTRA</div><div className="season">2026–2027 <span>Operating plan</span></div></header>
+  <div className="presentation" style={{width:1440*scale}}>
+  <div className="progress" role="progressbar" aria-label="Presentation progress" aria-valuemin={1} aria-valuemax={Slides.length} aria-valuenow={index+1}><div style={{width:`${(index+1)/Slides.length*100}%`}}/></div>
   <div className="stage" style={{width:1440*scale,height:900*scale}}><div className="canvas" style={{transform:`scale(${scale})`}}>{Slides.map((Slide,i)=><section ref={el=>roots.current[i]=el} className="slide" key={i} aria-label={`Slide ${i+1}: ${titles[i]}`} aria-hidden={i!==index} inert={i!==index}><Slide/></section>)}</div></div>
-  <footer><div className="slide-label" aria-live="polite"><strong>{String(index+1).padStart(2,'0')}</strong><span>/ {Slides.length}</span><i/>{titles[index]}</div><nav aria-label="Presentation controls"><button onClick={()=>setOverview(true)} title="All slides (O)">All slides</button><button onClick={()=>setHelp(true)} aria-label="Keyboard shortcuts">?</button><button onClick={fullscreen} title="Fullscreen (F)">Fullscreen</button><button disabled={index===0} onClick={()=>go(index-1)} aria-label="Previous slide">←</button><button disabled={index===Slides.length-1} onClick={()=>go(index+1)} aria-label="Next slide">→</button></nav></footer>
-  <div className="progress"><div style={{width:`${(index+1)/Slides.length*100}%`}}/></div>
-  {overview&&<div className="overlay" role="dialog" aria-modal="true" aria-label="All slides"><div className="overlay-head"><h2>Choose a slide</h2><button autoFocus onClick={()=>setOverview(false)}>Close</button></div><div className="slide-menu">{titles.map((t,i)=><button key={t} className={i===index?'selected':''} onClick={()=>go(i)}><span>{String(i+1).padStart(2,'0')}</span>{t}</button>)}</div></div>}
-  {help&&<div className="overlay help" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts"><h2>Presentation controls</h2><p>← / → or Space: change slide</p><p>F: fullscreen · O: all slides</p><p>Home / End: first / last slide</p><p>Swipe left or right on touchscreens.</p><p>Escape: close this panel</p><button autoFocus onClick={()=>setHelp(false)}>Close</button></div>}
+  </div>
+  <button className="fullscreen" onClick={fullscreen} aria-label={expanded?'Exit fullscreen':'Enter fullscreen'} title={expanded?'Exit fullscreen (Esc)':'Fullscreen (F)'}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={expanded?'M8 3v5H3m18 0h-5V3M3 16h5v5m8 0v-5h5':'M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5'}/></svg></button>
+
  </main>;
 }
 createRoot(document.getElementById('root')).render(<App/>);
