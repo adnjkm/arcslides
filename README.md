@@ -9,7 +9,7 @@ Eight-slide UTRA presentation for the 2026–2027 season, exported from Paper.
 
 Run `npm ci`, `npm run build`, then `npm start`. Open http://localhost:4173.
 
-Use arrow keys or Space to advance, O for the slide selector and F for fullscreen where supported. Reduced motion and touch swipes are supported.
+Use arrow keys or Space to advance and F or the fullscreen icon to expand the presentation. Escape exits expanded mode. Native fullscreen is used where supported, with a full-viewport fallback. Reduced motion and touch swipes are supported.
 
 `paper-export.json` contains the Paper snapshot. `build.mjs` creates the React slides and the static `docs/` site. Re-export Paper to incorporate design changes, then run `npm run build` and commit the updated files. GitHub Pages publishes `docs/` from `main`.
 
