@@ -1,6 +1,6 @@
 # ARC Robotics slides
 
-Eight-slide UTRA presentation for the 2026–2027 season, exported from Paper.
+Nine-slide UTRA presentation for the 2026–2027 season, exported from Paper.
 
 - Website: https://adnjkm.github.io/arcslides/
 - Paper: https://app.paper.design/file/01M1SD0MFZ25RD9PR8Z3HV18KJ/1-0
@@ -9,7 +9,7 @@ Eight-slide UTRA presentation for the 2026–2027 season, exported from Paper.
 
 Run `npm ci`, `npm run build`, then `npm start`. Open http://localhost:4173.
 
-Use arrow keys or Space to advance and F or the fullscreen icon to expand the presentation. Escape exits expanded mode. Native fullscreen is used where supported, with a full-viewport fallback. Reduced motion and touch swipes are supported.
+Use arrow keys or Space to advance and F or the fullscreen icon to expand the presentation. Escape exits expanded mode. Native fullscreen is used where supported, with a full-viewport fallback. Short fades and direction-aware content reveals follow the visual rows of the deck. Reduced motion and touch swipes are supported.
 
 `paper-export.json` contains the Paper snapshot. `build.mjs` creates the React slides and the static `docs/` site. Re-export Paper to incorporate design changes, then run `npm run build` and commit the updated files. GitHub Pages publishes `docs/` from `main`.
 

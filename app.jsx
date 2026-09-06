@@ -19,7 +19,7 @@ function App(){
   return()=>{clearTimeout(idle);window.removeEventListener('pointermove',move);window.removeEventListener('pointerdown',move);document.documentElement.removeEventListener('pointerleave',leave);};
  },[expanded]);
  const go=n=>{setIndex(Math.max(0,Math.min(Slides.length-1,n)));};
- useEffect(()=>{const resize=()=>setScale(Math.min((innerWidth-(expanded?0:48))/1440,(innerHeight-(expanded?3:60))/900));resize();addEventListener('resize',resize);return()=>removeEventListener('resize',resize);},[expanded]);
+ useEffect(()=>{const resize=()=>setScale(Math.min((innerWidth-(expanded?0:48))/1440,(innerHeight-(expanded?3:60))/754));resize();addEventListener('resize',resize);return()=>removeEventListener('resize',resize);},[expanded]);
  const fullscreen=async()=>{
   if(expanded){if(document.fullscreenElement)await document.exitFullscreen();setExpanded(false);return;}
   setExpanded(true);
@@ -33,14 +33,36 @@ function App(){
   const old=last.current,current=roots.current[index],reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,dir=old===null||index>=old?1:-1;
   roots.current.forEach(el=>{if(el){el.style.visibility='hidden';el.style.zIndex='0';}});
   current.style.visibility='visible';current.style.zIndex='2';
-  if(old!==null&&old!==index&&!reduced){const before=roots.current[old];before.style.visibility='visible';before.style.zIndex='1';animations.current.push(before.animate([{opacity:1,transform:'translateX(0) scale(1)'},{opacity:0,transform:`translateX(${-dir*100}px) scale(.97)`}],{duration:520,easing:'cubic-bezier(.22,1,.36,1)',fill:'forwards'}));timers.current.push(setTimeout(()=>{before.style.visibility='hidden';},530));}
-  if(!reduced){animations.current.push(current.animate([{opacity:0,transform:`translateX(${dir*110}px) scale(.97)`},{opacity:1,transform:'translateX(0) scale(1)'}],{duration:700,easing:'cubic-bezier(.16,1,.3,1)'}));Array.from(current.firstElementChild.children).forEach((child,i)=>{animations.current.push(child.animate([{opacity:0,transform:'translateY(24px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,delay:100+i*45,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}));});}
+  if(old!==null&&old!==index&&!reduced){
+   const before=roots.current[old];
+   before.style.visibility='visible';before.style.zIndex='1';
+   animations.current.push(before.animate([{opacity:1},{opacity:0}],{duration:180,easing:'ease-out',fill:'forwards'}));
+   timers.current.push(setTimeout(()=>{before.style.visibility='hidden';},200));
+  }
+  if(!reduced){
+   const ease='cubic-bezier(.22,1,.36,1)';
+   animations.current.push(current.animate([{opacity:0},{opacity:1}],{duration:300,easing:ease}));
+   // Reveal by visual position, not Paper's layer order. Items in a table row
+   // share a delay; fixed corner logos stay still throughout the transition.
+   Array.from(current.firstElementChild.children).forEach(child=>{
+    const y=parseFloat(child.style.top)||0;
+    const x=parseFloat(child.style.left)||0;
+    if(getComputedStyle(child).display==='none'||(x>1250&&y>680))return;
+    const rule=child.offsetHeight<=3;
+    const delay=y<100?20:Math.min(190,50+Math.round(y/110)*22);
+    if(rule){
+     animations.current.push(child.animate([{opacity:0},{opacity:1}],{duration:260,delay,easing:ease,fill:'backwards'}));
+    }else{
+     animations.current.push(child.animate([{opacity:0,transform:`translateX(${dir*(y<100?10:18)}px)`},{opacity:1,transform:'translateX(0)'}],{duration:420,delay,easing:ease,fill:'backwards'}));
+    }
+   });
+  }
   last.current=index;history.replaceState(null,'',`#${index+1}`);
  },[index]);
  return <main onTouchStart={e=>touch.current=e.changedTouches[0].clientX} onTouchEnd={e=>{if(touch.current!==null){const d=e.changedTouches[0].clientX-touch.current;if(Math.abs(d)>70)go(index+(d<0?1:-1));touch.current=null;}}}>
   <div className="presentation" style={{width:1440*scale}}>
   <div className="progress" role="progressbar" aria-label="Presentation progress" aria-valuemin={1} aria-valuemax={Slides.length} aria-valuenow={index+1}><div style={{width:`${(index+1)/Slides.length*100}%`}}/></div>
-  <div className="stage" style={{width:1440*scale,height:900*scale}}><div className="canvas" style={{transform:`scale(${scale})`}}>{Slides.map((Slide,i)=><section ref={el=>roots.current[i]=el} className="slide" key={i} aria-label={`Slide ${i+1}: ${titles[i]}`} aria-hidden={i!==index} inert={i!==index}><Slide/></section>)}</div></div>
+  <div className="stage" style={{width:1440*scale,height:754*scale}}><div className="canvas" style={{transform:`scale(${scale})`}}>{Slides.map((Slide,i)=><section ref={el=>roots.current[i]=el} className="slide" key={i} aria-label={`Slide ${i+1}: ${titles[i]}`} aria-hidden={i!==index} inert={i!==index}><Slide/></section>)}</div></div>
   </div>
   <button className={`fullscreen${expanded&&!controlsVisible?' controls-hidden':''}`} onClick={fullscreen} aria-label={expanded?'Exit fullscreen':'Enter fullscreen'} title={expanded?'Exit fullscreen (Esc)':'Fullscreen (F)'}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={expanded?'M8 3v5H3m18 0h-5V3M3 16h5v5m8 0v-5h5':'M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5'}/></svg></button>
 
