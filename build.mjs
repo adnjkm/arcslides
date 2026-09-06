@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {build} from 'esbuild';
 const slides=JSON.parse(fs.readFileSync('paper-export.json','utf8'));
 const assets={
@@ -28,6 +29,13 @@ fs.rmSync('docs/assets',{recursive:true,force:true});
 fs.mkdirSync('docs/assets',{recursive:true});
 for(const name of ['index.html','style.css','bundle.js'])fs.copyFileSync(name,`docs/${name}`);
 for(const name of used)fs.copyFileSync(`assets/${name}`,`docs/assets/${name}`);
+// Version asset URLs so browsers fetch the matching build after a refresh.
+let page=fs.readFileSync('index.html','utf8');
+for(const name of ['bundle.js','style.css']){
+ const version=createHash('sha256').update(fs.readFileSync(name)).digest('hex').slice(0,12);
+ page=page.replace(name,`${name}?v=${version}`);
+}
+fs.writeFileSync('docs/index.html',page);
 fs.writeFileSync('docs/.nojekyll','');
 // Keep the existing local preview server on the same published build.
 for (const [from,to] of [['bundle.js','local-bundle.js'],['style.css','local-style.css'],['app.jsx','local-app.jsx']]) fs.copyFileSync(from,to);
