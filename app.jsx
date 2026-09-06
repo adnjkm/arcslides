@@ -36,15 +36,15 @@ function App(){
   if(old!==null&&old!==index&&!reduced){
    const before=roots.current[old];
    before.style.visibility='visible';before.style.zIndex='1';
-   animations.current.push(before.animate([{opacity:1},{opacity:0}],{duration:180,easing:'ease-out',fill:'forwards'}));
-   timers.current.push(setTimeout(()=>{before.style.visibility='hidden';},200));
+   animations.current.push(before.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:`translateX(${-dir*24}px)`}],{duration:320,easing:'cubic-bezier(.22,1,.36,1)',fill:'forwards'}));
+   timers.current.push(setTimeout(()=>{before.style.visibility='hidden';},340));
   }
   if(!reduced){
    const ease='cubic-bezier(.22,1,.36,1)';
-   animations.current.push(current.animate([{opacity:0},{opacity:1}],{duration:300,easing:ease}));
+   animations.current.push(current.animate([{opacity:0,transform:`translateX(${dir*24}px)`},{opacity:1,transform:'translateX(0)'}],{duration:320,easing:ease}));
    // Reveal by visual position, not Paper's layer order. Items in a table row
    // share a delay; fixed corner logos stay still throughout the transition.
-   Array.from(current.firstElementChild.children).forEach(child=>{
+   if(old===null||dir>0) Array.from(current.firstElementChild.children).forEach(child=>{
     const y=parseFloat(child.style.top)||0;
     const x=parseFloat(child.style.left)||0;
     if(getComputedStyle(child).display==='none'||(x>1250&&y>680))return;
