@@ -14,7 +14,7 @@ const assets={
 '6ZH32VC2WMG7HAE46DBV9NS2FA.jpg':'max.jpg'
 };
 const used=new Set();
-const titles=['Subteam overview','ARC Robotics and our first season','Robot requirements','Robot design','Budget','Responsibilities','Founding team','Timeline','Talking points'];
+const titles=['Subteam overview','ARC Robotics and our first season','Robot requirements','Robot design','Budget','Responsibilities','Founding team','Timeline','Safety','Talking points'];
 const jsx=slides.map((s,i)=>{
  const code=s.jsx.replaceAll('\u00a0','&nbsp;').replace(/https:\/\/app\.paper\.design\/file-assets\/[^)'"\s]+/g,url=>{
  const file=assets[url.split('/').pop()];
