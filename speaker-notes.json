@@ -78,5 +78,11 @@
     "From April onward, the emphasis shifts from building the core systems to proving that they work together. That includes qualification evidence, compliance checks, match testing and fixing faults.",
     "In May and June, we also prepare the people and equipment for competition: pilot training, spare parts, repair practice and transport arrangements.",
     "The exact dates will depend on the published competition schedule. What we want to establish is a working robot early enough that testing and preparation have their own time, rather than being squeezed into the days before competition."
+  ],
+  "15": [
+    "Finally, we looked at safety, starting with the projectile itself. At 3.2 grams and 25 metres per second, it carries 1 joule of energy, or approximately 0.44 joules per square centimetre.",
+    "To understand what that means for potential injury, we compared it with Duma’s eye-impact study. Our calculated value is roughly three times the study’s benchmark for a 50% risk of corneal abrasion. That comparison flags direct eye impact as a hazard.",
+    "Based on that, our plan is to test inside UTRA Combat’s wooden box, after confirming it can contain the shots. Any testing outside the enclosure would require everyone present to wear impact-rated safety goggles.",
+    "Alongside those precautions, every member will complete UTRA-required safety training before hands-on work, covering safe testing, emergency stops, and disabling and unloading the robot before accessing it."
   ]
 }
