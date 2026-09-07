@@ -3,6 +3,8 @@ import {createHash} from 'node:crypto';
 import {build} from 'esbuild';
 const slides=JSON.parse(fs.readFileSync('paper-export.json','utf8'));
 const assets={
+'050GXQN8CGRZ35VZ7KEAWGGZRY.png':'aaron-site.jpg',
+'4KF20GXHRCAQ1AQ43S4VZM8KDT.png':'evan-site.jpg',
 '67XBAP0PRE5520ZMHX921QDW8C.png':'robot-budget-current.png',
 '4C8X59T06VQS8R8FT2TPC775Q9.png':'utra-logo.png',
 '7CKZBCJ26B29TW9NVEW7G272ND.png':'arc-logo.png',

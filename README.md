@@ -21,9 +21,9 @@ Use arrow keys or Space to advance and F or the fullscreen icon to expand the pr
 - Competition: https://aruw.org/news/four-time-robomaster-north-america-champions
 - ARUW Standard: https://aruw.org/ourrobots
 - Texas A&M robot: https://engineering.tamu.edu/news/2023/07/texas-am-robomasters-robotics-team-awarded-at-international-event.html
-- Aaron Huang: https://www.linkedin.com/in/haaron/
+- Aaron Huang: https://www.aaronhuang.dev/
 - Aiden Kim: https://www.linkedin.com/in/adnjkm/
-- Evan Yu: https://www.linkedin.com/in/ev-yu/
+- Evan Yu: https://evanyu.dev/
 - Max Ma: https://www.linkedin.com/in/xiaoying-ma-6052a23a9/
 
 Photographs belong to their respective owners.
