@@ -6,20 +6,24 @@ function App(){
  const initial=Math.max(0,Math.min(Slides.length-1,(parseInt(location.hash.slice(1))||1)-1));
  const [index,setIndex]=useState(initial),[expanded,setExpanded]=useState(false),[scale,setScale]=useState(1),[controlsVisible,setControlsVisible]=useState(true);
  const roots=useRef([]),last=useRef(null),touch=useRef(null);
+ const [mobile,setMobile]=useState(()=>matchMedia('(pointer: coarse), (max-width: 760px)').matches);
+ useEffect(()=>{const media=matchMedia('(pointer: coarse), (max-width: 760px)');const change=()=>setMobile(media.matches);media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
  useEffect(()=>{
   let idle;
   const reveal=()=>{setControlsVisible(true);clearTimeout(idle);idle=setTimeout(()=>setControlsVisible(false),1500);};
-  const move=e=>{if(e.clientY>=innerHeight-90)reveal();else{clearTimeout(idle);setControlsVisible(false);}};
-  const leave=()=>{clearTimeout(idle);setControlsVisible(false);};
+  const move=e=>{if(mobile||e.pointerType==='touch')return;if(e.clientY>=innerHeight-90)reveal();else{clearTimeout(idle);setControlsVisible(false);}};
+  const tap=e=>{if(mobile||e.pointerType==='touch')reveal();};
+  const leave=e=>{if(mobile||e.pointerType==='touch')return;clearTimeout(idle);setControlsVisible(false);};
   if(!expanded){setControlsVisible(true);return;}
   reveal();
   window.addEventListener('pointermove',move);
   window.addEventListener('pointerdown',move);
+  window.addEventListener('pointerup',tap);
   document.documentElement.addEventListener('pointerleave',leave);
-  return()=>{clearTimeout(idle);window.removeEventListener('pointermove',move);window.removeEventListener('pointerdown',move);document.documentElement.removeEventListener('pointerleave',leave);};
- },[expanded]);
+  return()=>{clearTimeout(idle);window.removeEventListener('pointermove',move);window.removeEventListener('pointerdown',move);window.removeEventListener('pointerup',tap);document.documentElement.removeEventListener('pointerleave',leave);};
+ },[expanded,mobile]);
  const go=n=>{setIndex(current=>Math.max(0,Math.min(Slides.length-1,typeof n==='function'?n(current):n)));};
- useEffect(()=>{const resize=()=>setScale(Math.min((innerWidth-(expanded?0:48))/1440,(innerHeight-(expanded?3:60))/754));resize();addEventListener('resize',resize);return()=>removeEventListener('resize',resize);},[expanded]);
+ useEffect(()=>{const resize=()=>setScale(Math.max(0,Math.min((document.documentElement.clientWidth-(expanded?0:mobile?16:48))/1440,((window.visualViewport?.height??innerHeight)-(expanded?3:mobile?100:60))/754)));resize();addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);return()=>{removeEventListener('resize',resize);window.visualViewport?.removeEventListener('resize',resize);};},[expanded,mobile]);
  const fullscreen=async()=>{
   if(expanded){if(document.fullscreenElement)await document.exitFullscreen();setExpanded(false);return;}
   setExpanded(true);
@@ -44,11 +48,15 @@ function App(){
   return()=>animation.cancel();
  },[index]);
 
- return <main onTouchStart={e=>touch.current=e.changedTouches[0].clientX} onTouchEnd={e=>{if(touch.current!==null){const d=e.changedTouches[0].clientX-touch.current;if(Math.abs(d)>70)go(n=>n+(d<0?1:-1));touch.current=null;}}}>
+ return <main className={mobile?'mobile':''} onTouchStart={e=>{touch.current=e.touches.length===1&&!e.target.closest('button')?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null;}} onTouchCancel={()=>touch.current=null} onTouchEnd={e=>{const start=touch.current;touch.current=null;if(!start)return;const end=e.changedTouches[0],dx=end.clientX-start.x,dy=end.clientY-start.y;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3)go(n=>n+(dx<0?1:-1));}}>
   <div className="presentation" style={{width:1440*scale}}>
   <div className="progress" role="progressbar" aria-label="Presentation progress" aria-valuemin={1} aria-valuemax={Slides.length} aria-valuenow={index+1}><div style={{width:`${(index+1)/Slides.length*100}%`}}/></div>
   <div className="stage" style={{width:1440*scale,height:754*scale}}><div className="canvas" style={{transform:`scale(${scale})`}}>{Slides.map((Slide,i)=><section ref={el=>roots.current[i]=el} className="slide" key={i} aria-label={`Slide ${i+1}: ${titles[i]}`} aria-hidden={i!==index} inert={i!==index}><Slide/></section>)}</div></div>
   </div>
+  {mobile&&<nav className={`mobile-navigation${expanded&&!controlsVisible?' controls-hidden':''}`} aria-label="Slide navigation">
+   <button onClick={()=>go(n=>n-1)} disabled={index===0} aria-label="Previous slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+   <button onClick={()=>go(n=>n+1)} disabled={index===Slides.length-1} aria-label="Next slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+  </nav>}
   <button className={`fullscreen${expanded&&!controlsVisible?' controls-hidden':''}`} onClick={fullscreen} aria-label={expanded?'Exit fullscreen':'Enter fullscreen'} title={expanded?'Exit fullscreen (Esc)':'Fullscreen (F)'}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={expanded?'M8 3v5H3m18 0h-5V3M3 16h5v5m8 0v-5h5':'M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5'}/></svg></button>
 
  </main>;

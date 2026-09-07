@@ -3,3 +3,14 @@
 .fullscreen.controls-hidden{opacity:0;pointer-events:none}.fullscreen.controls-hidden:focus-visible{opacity:1;pointer-events:auto}
 
 .slide[aria-hidden="false"]{visibility:visible;z-index:1}
+
+main{touch-action:pan-y pinch-zoom}
+.mobile-navigation{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:16px;opacity:1;transition:opacity .2s}
+.mobile-navigation button{display:flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:1px solid #ffffff25;border-radius:8px;background:#222d;color:#eee;touch-action:manipulation;cursor:pointer}
+.mobile-navigation button:disabled{opacity:.3;cursor:default}
+.mobile-navigation button:focus-visible{outline:2px solid #547bea;outline-offset:3px}
+.mobile-navigation.controls-hidden{opacity:0;pointer-events:none}
+.mobile-navigation.controls-hidden:has(:focus-visible){opacity:1;pointer-events:auto}
+.mobile .fullscreen{width:48px;height:48px;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));opacity:1}
+.mobile .fullscreen.controls-hidden{opacity:0}
+@media(prefers-reduced-motion:reduce){.mobile-navigation{transition:none}}
