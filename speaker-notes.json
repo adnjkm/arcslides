@@ -1,0 +1,82 @@
+{
+  "2": [
+    "To start, ARC Robotics is a competition where university teams design and build robots for tactical arena matches. The robots drive, aim and fire projectiles at opponents’ armour panels to reduce their hit points.",
+    "That premise takes three forms: 1v1, 3v3 and an Engineering Challenge.",
+    "The competition also has an established community across North America, including schools like Purdue, NYU, McMaster, Queen’s, Ontario Tech and UBC. So there are already experienced teams participating and a community for us to learn from.",
+    "For our team, we’ve chosen to focus on 1v1 Infantry. With one robot and one pilot, we can concentrate our first season on building one complete, reliable robot and keep the coordination between systems manageable.",
+    "Looking at the previous competition schedule, we think targeting the 2026–2027 season, with competition around late June or early July 2027, gives us a reasonable planning window. The exact dates and venue are still unconfirmed."
+  ],
+  "3": [
+    "Stemming from that interest in ARC, the first thing we did was look at the fundamental requirements for a robot in the 1v1 event. We used the 2026 rulebook as our starting point, since the next version isn’t available yet.",
+    "Importantly, there are four areas that directly affect what we need to build.",
+    "For the chassis and structure, we’re working within a 600 mm starting cube and a 25 kg weight limit, excluding referee hardware. Those constraints shape the size and arrangement of the robot.",
+    "For power, we have limits on voltage, battery capacity and chassis power, as well as a requirement to disconnect the chassis motors from all power sources through the cutoff.",
+    "For the launcher, we’re designing around one 17 mm projectile launcher, limited to 25 m/s, with illumination for the fluorescent projectiles.",
+    "And finally, we need to incorporate the referee system and pass the required motion and firing tests.",
+    "Those requirements gave us the boundaries for the design decisions on the next slide."
+  ],
+  "4": [
+    "In addition to those constraints, we’ve already made some initial design decisions of our own, based on what we think is achievable between now and competition day.",
+    "Making those decisions early also gives us something concrete to plan around: we can identify parts, estimate costs and divide up the work.",
+    "Starting on the left, the pilot will issue commands from a laptop, with a Type C board handling robot control.",
+    "From there, the design branches into the robot’s three main functions.",
+    "For driving, we’re planning a four-wheel X-drive with a sheet-metal chassis and spacers.",
+    "For aiming, we’re using a two-axis gimbal, with two GM6020 motors controlling yaw and pitch.",
+    "For firing, we’re planning a motorized feeder supplying a single 17 mm launcher.",
+    "Finally, we’ve included a possible vision-assistance system using an OV9782 camera, Raspberry Pi 5 and Hailo AI HAT+. That comes after establishing reliable manual operation, so our ability to compete doesn’t depend on finishing vision assistance."
+  ],
+  "5": [
+    "Based on both the competition constraints and those design decisions, we’ve already assessed the parts needed to build our intended robot.",
+    "We’ve gone through the subsystems and budgeted the components and materials we currently expect to need, including the motors, electronics, referee hardware and charging equipment.",
+    "That gives us the itemized budget shown here, coming to C$4,944, or approximately C$5,000 for the robot itself.",
+    "But building the robot is only one part of getting to competition, so we’ve also looked at the costs of attending."
+  ],
+  "6": [
+    "In addition to the robot budget, we’ve estimated competition expenses using the previous venue as a reference, since the next venue hasn’t been announced.",
+    "Using Purdue’s 2026 venue, we estimated 1,632 km of robot transport. At the C$0.50-per-kilometre rate quoted by Ryan Hammer, that comes to C$816.",
+    "We’ve also included approximately C$208 for registration, bringing registration and robot transport to about C$1,024.",
+    "For flights, we’ve kept the estimate separate at C$810 in base airfare per person, so the budget can accommodate changes in how many members travel.",
+    "We therefore estimate approximately C$5,967 for the robot, registration and robot transport, plus C$810 per traveller.",
+    "That’s our current planning figure. Taxes, shipping, import duties, accommodation, meals and baggage still need to be accounted for, and the travel estimates will change once the venue and dates are confirmed."
+  ],
+  "7": [
+    "Now, to meet the financial requirements of both building the robot and competing, we’ve thought through how we intend to fund the project.",
+    "Importantly, we understand UTRA has limited funds and existing teams to support. Our plan is to lead our own fundraising and bring new support into ARC and UTRA, without drawing on UTRA’s existing pool.",
+    "On sponsorship, we already have a concrete lead in Sable Metal, where we would request sheet metal, laser cutting and forming. That support isn’t confirmed for ARC yet, but we know what we would ask for and where it fits into our design.",
+    "We’re also pursuing donations that reduce purchasing costs directly. Drivetrain wheels are already lined up, and we intend to seek further parts and material donations.",
+    "Alongside that outreach, we’ve taken the time to review university funding programs and connect their criteria to our budget. Two particularly relevant routes are SEF and CPSIF.",
+    "For SEF, we noticed the emphasis on lasting equipment that benefits engineering students. Our referee hardware, chargers and vision hardware have utility beyond a single competition season: they can support future robots and member training.",
+    "That gives us a specific case to bring through UTRA: reusable equipment, with a clear explanation of how students would continue to benefit from it.",
+    "For CPSIF, the connection is engineering engagement, inclusive participation and a justified budget. Our motors, controllers and materials support hands-on design and testing, and our recruitment approach gives students a way to participate in that work.",
+    "So the contribution to UTRA would go beyond funding our own robot. We would bring a costed project and supporting evidence for funding applications, while taking responsibility for pursuing those opportunities. Awards would still be subject to review."
+  ],
+  "8": [
+    "With the costs and our approach to funding laid out, we can get into how we intend to take the robot from a design to a finished build.",
+    "Our plan is to divide responsibility within the subteam into four groups.",
+    "Administration sits across the project, handling fundraising, sponsors, purchasing and competition logistics so the technical work can move forward.",
+    "Underneath that, design and build handles the chassis, gimbal and feeder, including fabrication, assembly and mechanical testing.",
+    "Electronics handles the power system, motor controllers and referee hardware, including testing the interfaces and cutoff.",
+    "Software handles manual control and communication between the systems, followed by camera capture and potential vision assistance.",
+    "Those three technical groups work in parallel and bring their work together throughout the build, with the shared goal of a robot that can drive, aim and fire with the referee system functioning.",
+    "With those responsibilities defined, the next slides introduce the people who will lead each group."
+  ],
+  "13": [
+    "Now, concerning how general members would participate, our intention is to keep membership open across all four groups.",
+    "We want students to have a way into the team even if they haven’t worked on a robot before. That means giving beginners defined tasks and guidance, while experienced members can take on larger pieces of subsystem work.",
+    "In particular, we think ARC would be attractive to students coming from high-school FRC and VEX teams who are looking for a natural transition into university robotics.",
+    "That gives us a useful recruitment opportunity: those students already understand aspects of building, programming and competing, and they’re looking for somewhere to continue.",
+    "Their experience can also help newer members get up to speed through shared projects and technical guidance.",
+    "Of course, open membership still needs active management. Each group lead will assign work, guide members and review progress, with responsibility growing according to skills and commitment.",
+    "That lets us welcome new people while keeping the work connected to the timeline we’ve set."
+  ],
+  "14": [
+    "Given that division of responsibilities and our recruitment approach, this is how we see the work progressing from now to competition.",
+    "The main target is to have a working robot by March, so we have time afterward to test, qualify and practise with it.",
+    "To get there, September and October focus on enabling the first build: securing funding, placing orders, defining the chassis and parts list, and recruiting software members.",
+    "From November through January, those groups begin working in parallel. We’re aiming for a rolling chassis and launcher tests, alongside motor and power bench tests and validated motor-control software.",
+    "February and March are when those pieces come together on the robot: the gimbal, feeder and mounts, the referee system and cutoff, and software that can drive, aim and fire.",
+    "From April onward, the emphasis shifts from building the core systems to proving that they work together. That includes qualification evidence, compliance checks, match testing and fixing faults.",
+    "In May and June, we also prepare the people and equipment for competition: pilot training, spare parts, repair practice and transport arrangements.",
+    "The exact dates will depend on the published competition schedule. What we want to establish is a working robot early enough that testing and preparation have their own time, rather than being squeezed into the days before competition."
+  ]
+}

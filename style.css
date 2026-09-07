@@ -14,3 +14,13 @@ main{touch-action:pan-y pinch-zoom}
 .mobile .fullscreen{width:48px;height:48px;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));opacity:1}
 .mobile .fullscreen.controls-hidden{opacity:0}
 @media(prefers-reduced-motion:reduce){.mobile-navigation{transition:none}}
+
+.script-panel{position:fixed;z-index:3;right:0;top:0;bottom:0;width:min(660px,55vw);overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:36px 32px 100px 64px;background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.76) 7%,rgba(0,0,0,.91) 100%);color:#fff;font-size:18px;line-height:1.6;scrollbar-color:#ffffff65 transparent}
+.script-panel h2{font-size:20px;line-height:1.35;margin:0 0 24px;font-weight:600}
+.script-panel ul{margin:0;padding-left:22px}.script-panel li{padding-left:4px;margin-bottom:22px}.script-panel p{color:#ddd}
+.script-panel:focus-visible{outline:1px solid #ffffff70;outline-offset:-2px}
+.fullscreen,.mobile-navigation{z-index:4}
+.script-toggle{right:56px}.script-toggle[aria-expanded="true"]{background:#183d70dd;color:#fff}
+.mobile .script-toggle{right:calc(max(12px,env(safe-area-inset-right)) + 60px)}
+.mobile:has(.script-toggle) .mobile-navigation{left:max(12px,env(safe-area-inset-left));transform:none}
+.mobile .script-panel{width:min(660px,85vw);padding:24px 20px 96px 40px;font-size:16px;line-height:1.5}

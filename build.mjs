@@ -35,7 +35,7 @@ async function buildDeck(snapshot,titles,destination,local=false){
   });
   return `function Slide${i}(){return ${code};}`;
  }).join('\n');
- fs.writeFileSync('slides.jsx',`import React from 'react';\n${jsx}\nexport const titles=${JSON.stringify(titles)};\nexport default [${snapshot.map((_,i)=>`Slide${i}`).join(',')}];\n`);
+ fs.writeFileSync('slides.jsx',`import React from 'react';\n${jsx}\nexport const titles=${JSON.stringify(titles)};\nexport const speakerNotes=${local?fs.readFileSync('speaker-notes.json','utf8'):'null'};\nexport default [${snapshot.map((_,i)=>`Slide${i}`).join(',')}];\n`);
  fs.mkdirSync(destination,{recursive:true});
  await build({stdin:{contents:app,resolveDir:process.cwd(),sourcefile:'app.jsx',loader:'jsx'},bundle:true,outfile:`${destination}/bundle.js`,minify:true,jsx:'automatic'});
  fs.rmSync(`${destination}/assets`,{recursive:true,force:true});

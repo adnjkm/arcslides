@@ -14,6 +14,8 @@ On mobile, use the arrow buttons or swipe left/right. In fullscreen, controls fa
 
 Use arrow keys or Space to advance and F or the fullscreen icon to expand the presentation. Escape exits expanded mode. Native fullscreen is used where supported, with a full-viewport fallback. Short directional transitions keep slide content visible, including during rapid navigation. Reduced motion and touch swipes are supported.
 
+The updated deck includes per-slide speaking notes from `speaker-notes.json`. Toggle the scrollable overlay with the script icon or S; Escape closes it. Slides without notes show an empty-state message.
+
 `paper-export.json` contains the current Paper snapshot; `paper-export-original.json` preserves the previous deck. `build.mjs` creates the React slides and the static `docs/` site. Re-export Paper to incorporate design changes, then run `npm run build` and commit the updated files. GitHub Pages publishes `docs/` from `main`.
 
 ## Image sources
