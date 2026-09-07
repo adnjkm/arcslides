@@ -3,6 +3,7 @@ import {createHash} from 'node:crypto';
 import {build} from 'esbuild';
 const slides=JSON.parse(fs.readFileSync('paper-export.json','utf8'));
 const assets={
+'4FD1CVM2R42PKCE80HABHXSBAY.jpg':'aiden-hires.jpg',
 '050GXQN8CGRZ35VZ7KEAWGGZRY.png':'aaron-site.jpg',
 '4KF20GXHRCAQ1AQ43S4VZM8KDT.png':'evan-site.jpg',
 '67XBAP0PRE5520ZMHX921QDW8C.png':'robot-budget-current.png',
@@ -23,7 +24,11 @@ const template=fs.readFileSync('index.html','utf8');
 async function buildDeck(snapshot,titles,destination,local=false){
  const used=new Set();
  const jsx=snapshot.map((s,i)=>{
-  const code=s.jsx.replaceAll('\u00a0','&nbsp;').replace(/https:\/\/app\.paper\.design\/file-assets\/[^)'"\s]+/g,url=>{
+  // Paper exports some text nodes as flex containers. Browser flex layout treats
+  // <br> and text runs as separate items, breaking wrapping. Keep text in normal flow.
+  const source=local?s.jsx.replace(/<div style=\{\{([^}]+)\}\}>((?:[^<]|<br\s*\/>)*)<\/div>/g,(all,style,content)=>
+   `<div style={{${style.replace(/display: 'flex'/g,"display: 'block'")}}}>${content}</div>`):s.jsx;
+  const code=source.replaceAll('\u00a0','&nbsp;').replace(/https:\/\/app\.paper\.design\/file-assets\/[^)'"\s]+/g,url=>{
    const file=assets[url.split('/').pop()];
    if(!file)throw new Error(`Unmapped Paper image: ${url}`);
    used.add(file);return `assets/${file}`;

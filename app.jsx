@@ -23,7 +23,7 @@ function App(){
   return()=>{clearTimeout(idle);window.removeEventListener('pointermove',move);window.removeEventListener('pointerdown',move);window.removeEventListener('pointerup',tap);document.documentElement.removeEventListener('pointerleave',leave);};
  },[expanded,mobile]);
  const go=n=>{setIndex(current=>Math.max(0,Math.min(Slides.length-1,typeof n==='function'?n(current):n)));};
- useEffect(()=>{const resize=()=>setScale(Math.max(0,Math.min((document.documentElement.clientWidth-(expanded?0:mobile?16:48))/1440,((window.visualViewport?.height??innerHeight)-(expanded?3:mobile?100:60))/754)));resize();addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);return()=>{removeEventListener('resize',resize);window.visualViewport?.removeEventListener('resize',resize);};},[expanded,mobile]);
+ useEffect(()=>{const resize=()=>{const width=document.documentElement.clientWidth,height=window.visualViewport?.height??innerHeight;const fill=expanded||(mobile&&width>height);setScale(Math.max(0,Math.min((width-(fill?0:mobile?16:48))/1440,(height-(fill?3:mobile?100:60))/754)));};resize();addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);return()=>{removeEventListener('resize',resize);window.visualViewport?.removeEventListener('resize',resize);};},[expanded,mobile]);
  const fullscreen=async()=>{
   if(expanded){if(document.fullscreenElement)await document.exitFullscreen();setExpanded(false);return;}
   setExpanded(true);
