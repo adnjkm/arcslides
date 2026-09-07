@@ -3,6 +3,7 @@ import {createHash} from 'node:crypto';
 import {build} from 'esbuild';
 const slides=JSON.parse(fs.readFileSync('paper-export.json','utf8'));
 const assets={
+'67XBAP0PRE5520ZMHX921QDW8C.png':'robot-budget-current.png',
 '4C8X59T06VQS8R8FT2TPC775Q9.png':'utra-logo.png',
 '7CKZBCJ26B29TW9NVEW7G272ND.png':'arc-logo.png',
 '6EN56FYEH533NKD4AMWXH8T80K.jpg':'competition.jpg',
@@ -14,7 +15,7 @@ const assets={
 '6ZH32VC2WMG7HAE46DBV9NS2FA.jpg':'max.jpg'
 };
 const used=new Set();
-const titles=['Subteam overview','ARC Robotics and our first season','Robot requirements','Robot design','Budget','Responsibilities','Founding team','Timeline','Safety','Talking points'];
+const titles=['Subteam overview','ARC Robotics and our first season','Robot requirements','Robot design','Robot budget detail','Budget visualization','Funding plan','Responsibilities','Aaron Huang','Max Ma','Evan Yu','Aiden Kim','Open recruitment','Timeline','Safety'];
 const jsx=slides.map((s,i)=>{
  const code=s.jsx.replaceAll('\u00a0','&nbsp;').replace(/https:\/\/app\.paper\.design\/file-assets\/[^)'"\s]+/g,url=>{
  const file=assets[url.split('/').pop()];

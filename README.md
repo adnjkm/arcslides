@@ -1,6 +1,6 @@
 # ARC Robotics slides
 
-Ten-slide UTRA presentation for the 2026–2027 season, exported from Paper.
+Fifteen-slide UTRA presentation for the 2026–2027 season, exported from Paper.
 
 - Website: https://adnjkm.github.io/arcslides/
 - Paper: https://app.paper.design/file/01M1SD0MFZ25RD9PR8Z3HV18KJ/1-0
