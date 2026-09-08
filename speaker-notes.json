@@ -1,88 +1,92 @@
 {
   "2": [
-    "To start, ARC Robotics is a competition where university teams design and build robots for tactical arena matches. The robots drive, aim and fire projectiles at opponents’ armour panels to reduce their hit points.",
-    "That premise takes three forms: 1v1, 3v3 and an Engineering Challenge.",
-    "The competition also has an established community across North America, including schools like Purdue, NYU, McMaster, Queen’s, Ontario Tech and UBC. So there are already experienced teams participating and a community for us to learn from.",
-    "For our team, we’ve chosen to focus on 1v1 Infantry. With one robot and one pilot, we can concentrate our first season on building one complete, reliable robot and keep the coordination between systems manageable.",
-    "Looking at the previous competition schedule, we think targeting the 2026–2027 season, with competition around late June or early July 2027, gives us a reasonable planning window. The exact dates and venue are still unconfirmed."
+    "To start: ARC is university robotics competition — drive, aim and fire at opponents’ armour panels to reduce hit points.",
+    "Three events: 1v1, 3v3 and Engineering Challenge.",
+    "Established community: Purdue, NYU, McMaster, Queen’s, Ontario Tech and UBC — experienced teams to learn from.",
+    "Our choice: 1v1 Infantry — one robot, one pilot; manageable first-season scope.",
+    "Target: 2026–2027 season; roughly late June / early July 2027, based on past scheduling. Dates and venue unconfirmed."
   ],
   "3": [
-    "Stemming from that interest in ARC, the first thing we did was look at the fundamental requirements for a robot in the 1v1 event. We used the 2026 rulebook as our starting point, since the next version isn’t available yet.",
-    "Importantly, there are four areas that directly affect what we need to build.",
-    "For the chassis and structure, we’re working within a 600 mm starting cube and a 25 kg weight limit, excluding referee hardware. Those constraints shape the size and arrangement of the robot.",
-    "For power, we have limits on voltage, battery capacity and chassis power, as well as a requirement to disconnect the chassis motors from all power sources through the cutoff.",
-    "For the launcher, we’re designing around one 17 mm projectile launcher, limited to 25 m/s, with illumination for the fluorescent projectiles.",
-    "And finally, we need to incorporate the referee system and pass the required motion and firing tests.",
-    "Those requirements gave us the boundaries for the design decisions on the next slide."
+    "From that interest, our first step: review the 2026 rulebook; next edition not yet available.",
+    "Chassis: 600 mm starting cube; 25 kg excluding referee hardware.",
+    "Power: voltage, battery-capacity and chassis-power limits; cutoff must isolate chassis motors from all power sources.",
+    "Launcher: one 17 mm launcher; maximum 25 m/s; illumination for fluorescent projectiles.",
+    "Referee system required, plus motion and firing qualification tests.",
+    "These constraints set the boundaries for our design."
   ],
   "4": [
-    "In addition to those constraints, we’ve already made some initial design decisions of our own, based on what we think is achievable between now and competition day.",
-    "Making those decisions early also gives us something concrete to plan around: we can identify parts, estimate costs and divide up the work.",
-    "Starting on the left, the pilot will issue commands from a laptop, with a Type C board handling robot control.",
-    "From there, the design branches into the robot’s three main functions.",
-    "For driving, we’re planning a four-wheel X-drive with a sheet-metal chassis and spacers.",
-    "For aiming, we’re using a two-axis gimbal, with two GM6020 motors controlling yaw and pitch.",
-    "For firing, we’re planning a motorized feeder supplying a single 17 mm launcher.",
-    "Finally, we’ve included a possible vision-assistance system using an OV9782 camera, Raspberry Pi 5 and Hailo AI HAT+. That comes after establishing reliable manual operation, so our ability to compete doesn’t depend on finishing vision assistance."
+    "Beyond the rules: choose a design achievable before competition — concrete enough to budget and assign work.",
+    "Pilot laptop → Type C control board → three robot functions.",
+    "Drive: four-wheel X-drive; sheet-metal chassis and spacers.",
+    "Aim: two-axis gimbal; two GM6020 motors for yaw and pitch.",
+    "Fire: motorized feeder supplying one 17 mm launcher.",
+    "Then vision assistance: OV9782 camera + Raspberry Pi 5 + Hailo AI HAT+.",
+    "Manual operation first; competing must not depend on finishing vision."
   ],
   "5": [
-    "Based on both the competition constraints and those design decisions, we’ve already assessed the parts needed to build our intended robot.",
-    "We’ve gone through the subsystems and budgeted the components and materials we currently expect to need, including the motors, electronics, referee hardware and charging equipment.",
-    "That gives us the itemized budget shown here, coming to C$4,944, or approximately C$5,000 for the robot itself.",
-    "But building the robot is only one part of getting to competition, so we’ve also looked at the costs of attending."
+    "From the constraints and design: identify and price the required parts by subsystem.",
+    "Includes motors, electronics, referee hardware, charging equipment and materials.",
+    "Robot budget: C$4,944 — approximately C$5,000.",
+    "Building is only part of the cost; next, getting to competition."
   ],
   "6": [
-    "In addition to the robot budget, we’ve estimated competition expenses using the previous venue as a reference, since the next venue hasn’t been announced.",
-    "Using Purdue’s 2026 venue, we estimated 1,632 km of robot transport. At the C$0.50-per-kilometre rate quoted by Ryan Hammer, that comes to C$816.",
-    "We’ve also included approximately C$208 for registration, bringing registration and robot transport to about C$1,024.",
-    "For flights, we’ve kept the estimate separate at C$810 in base airfare per person, so the budget can accommodate changes in how many members travel.",
-    "We therefore estimate approximately C$5,967 for the robot, registration and robot transport, plus C$810 per traveller.",
-    "That’s our current planning figure. Taxes, shipping, import duties, accommodation, meals and baggage still need to be accounted for, and the travel estimates will change once the venue and dates are confirmed."
+    "Beyond the robot: estimate attendance costs using Purdue’s 2026 venue; next venue unconfirmed.",
+    "Robot transport: 1,632 km × C$0.50/km = C$816. Rate quoted by Ryan Hammer.",
+    "Registration: approximately C$208; transport + registration ≈ C$1,024.",
+    "Base airfare: C$810 per person, kept separate as traveller numbers may change.",
+    "Planning total: approximately C$5,967 + C$810 per traveller.",
+    "Excluded: taxes, shipping, import duties, accommodation, meals and baggage.",
+    "Reprice travel when dates and venue are confirmed."
   ],
   "7": [
-    "Now, to meet the financial requirements of both building the robot and competing, we’ve thought through how we intend to fund the project.",
-    "Importantly, we understand UTRA has limited funds and existing teams to support. Our plan is to lead our own fundraising and bring new support into ARC and UTRA, without drawing on UTRA’s existing pool.",
-    "On sponsorship, we already have a concrete lead in Sable Metal, where we would request sheet metal, laser cutting and forming. That support isn’t confirmed for ARC yet, but we know what we would ask for and where it fits into our design.",
-    "We’re also pursuing donations that reduce purchasing costs directly. Drivetrain wheels are already lined up, and we intend to seek further parts and material donations.",
-    "Alongside that outreach, we’ve taken the time to review university funding programs and connect their criteria to our budget. Two particularly relevant routes are SEF and CPSIF.",
-    "For SEF, we noticed the emphasis on lasting equipment that benefits engineering students. Our referee hardware, chargers and vision hardware have utility beyond a single competition season: they can support future robots and member training.",
-    "That gives us a specific case to bring through UTRA: reusable equipment, with a clear explanation of how students would continue to benefit from it.",
-    "For CPSIF, the connection is engineering engagement, inclusive participation and a justified budget. Our motors, controllers and materials support hands-on design and testing, and our recruitment approach gives students a way to participate in that work.",
-    "So the contribution to UTRA would go beyond funding our own robot. We would bring a costed project and supporting evidence for funding applications, while taking responsibility for pursuing those opportunities. Awards would still be subject to review."
+    "To meet those costs: lead our own fundraising, without drawing on UTRA’s existing funds.",
+    "Sponsor lead: Sable Metal — request sheet metal, laser cutting and forming; not yet confirmed.",
+    "Donations: drivetrain wheels already lined up; seek more parts and materials.",
+    "University funding: reviewed SEF and CPSIF criteria against our budget.",
+    "SEF: lasting equipment benefiting engineering students → referee hardware, chargers and vision hardware.",
+    "Reuse across future robots and member training gives UTRA a concrete equipment-funding case.",
+    "CPSIF: engineering engagement, inclusive participation and a justified budget.",
+    "Our case: motors, controllers and materials for hands-on design/testing, with open recruitment.",
+    "Value to UTRA: a costed project and application evidence; ARC leads the fundraising work. Awards subject to review."
   ],
   "8": [
-    "With the costs and our approach to funding laid out, we can get into how we intend to take the robot from a design to a finished build.",
-    "Our plan is to divide responsibility within the subteam into four groups.",
-    "Administration sits across the project, handling fundraising, sponsors, purchasing and competition logistics so the technical work can move forward.",
-    "Underneath that, design and build handles the chassis, gimbal and feeder, including fabrication, assembly and mechanical testing.",
-    "Electronics handles the power system, motor controllers and referee hardware, including testing the interfaces and cutoff.",
-    "Software handles manual control and communication between the systems, followed by camera capture and potential vision assistance.",
-    "Those three technical groups work in parallel and bring their work together throughout the build, with the shared goal of a robot that can drive, aim and fire with the referee system functioning.",
-    "With those responsibilities defined, the next slides introduce the people who will lead each group."
+    "With costs and funding plans laid out: how do we deliver the robot?",
+    "Four groups with defined responsibilities.",
+    "Admin, across all groups: fundraising, sponsors, purchasing and competition logistics.",
+    "Design & build: chassis, gimbal and feeder; fabrication, assembly and mechanical tests.",
+    "Electronics: power, motor controllers and referee hardware; interface and cutoff tests.",
+    "Software: manual control and system communication; then camera capture and possible vision assistance.",
+    "Three technical groups work in parallel and combine their work throughout the build.",
+    "Shared result: drive, aim and fire with a working referee system.",
+    "Next: the people leading each group."
   ],
   "13": [
-    "Now, concerning how general members would participate, our intention is to keep membership open across all four groups.",
-    "We want students to have a way into the team even if they haven’t worked on a robot before. That means giving beginners defined tasks and guidance, while experienced members can take on larger pieces of subsystem work.",
-    "In particular, we think ARC would be attractive to students coming from high-school FRC and VEX teams who are looking for a natural transition into university robotics.",
-    "That gives us a useful recruitment opportunity: those students already understand aspects of building, programming and competing, and they’re looking for somewhere to continue.",
-    "Their experience can also help newer members get up to speed through shared projects and technical guidance.",
-    "Of course, open membership still needs active management. Each group lead will assign work, guide members and review progress, with responsibility growing according to skills and commitment.",
-    "That lets us welcome new people while keeping the work connected to the timeline we’ve set."
+    "Now, general membership: open participation across all four groups.",
+    "Beginners: defined tasks and guidance. Experienced members: larger subsystem responsibilities.",
+    "FRC and VEX graduates: a natural transition from high-school to university robotics.",
+    "Recruit from that experience in building, programming and competing.",
+    "Experienced members help newcomers through shared projects and guidance.",
+    "Each lead assigns work, supports members and reviews progress.",
+    "Responsibility grows with skills and commitment, keeping open membership tied to delivery."
   ],
   "14": [
-    "Given that division of responsibilities and our recruitment approach, this is how we see the work progressing from now to competition.",
-    "The main target is to have a working robot by March, so we have time afterward to test, qualify and practise with it.",
-    "To get there, September and October focus on enabling the first build: securing funding, placing orders, defining the chassis and parts list, and recruiting software members.",
-    "From November through January, those groups begin working in parallel. We’re aiming for a rolling chassis and launcher tests, alongside motor and power bench tests and validated motor-control software.",
-    "February and March are when those pieces come together on the robot: the gimbal, feeder and mounts, the referee system and cutoff, and software that can drive, aim and fire.",
-    "From April onward, the emphasis shifts from building the core systems to proving that they work together. That includes qualification evidence, compliance checks, match testing and fixing faults.",
-    "In May and June, we also prepare the people and equipment for competition: pilot training, spare parts, repair practice and transport arrangements.",
-    "The exact dates will depend on the published competition schedule. What we want to establish is a working robot early enough that testing and preparation have their own time, rather than being squeezed into the days before competition."
+    "Given those groups and recruitment plans: here is the path to competition.",
+    "Key target: working robot by March, leaving time to test, qualify and practise.",
+    "September–October: funding, orders, chassis and parts list; software recruitment.",
+    "November–January: rolling chassis and launcher tests; motor/power bench tests; validated motor-control software.",
+    "February–March: combine gimbal, feeder, mounts, referee system, cutoff and drive/aim/fire software.",
+    "April onward: qualification evidence, compliance checks, match tests and fault fixes.",
+    "May–June: pilot training, spares, repair practice and transport.",
+    "Dates depend on the event schedule; protect time for testing rather than rushing before competition."
   ],
   "15": [
-    "Finally, we looked at safety, starting with the projectile itself. At 3.2 grams and 25 metres per second, it carries 1 joule of energy, or approximately 0.44 joules per square centimetre.",
-    "To understand what that means for potential injury, we compared it with Duma’s eye-impact study. Our calculated value is roughly three times the study’s benchmark for a 50% risk of corneal abrasion. That comparison flags direct eye impact as a hazard.",
-    "Based on that, our plan is to test inside UTRA Combat’s wooden box, after confirming it can contain the shots. Any testing outside the enclosure would require everyone present to wear impact-rated safety goggles.",
-    "Alongside those precautions, every member will complete UTRA-required safety training before hands-on work, covering safe testing, emergency stops, and disabling and unloading the robot before accessing it."
+    "Finally, safety: start with the projectile — 3.2 g at 25 m/s.",
+    "Calculated energy: 1 J; approximately 0.44 J/cm².",
+    "Then compare with Duma’s eye-impact study: roughly 3× its 50% corneal-abrasion benchmark.",
+    "Implication: direct eye impact is an injury hazard.",
+    "Contain testing in UTRA Combat’s wooden box, after confirming it contains shots.",
+    "Outside the enclosure: everyone present wears impact-rated safety goggles.",
+    "Pair these controls with mandatory UTRA safety training before hands-on work.",
+    "Training: safe testing, emergency stops, disabling and unloading before access."
   ]
 }
