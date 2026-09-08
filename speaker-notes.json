@@ -60,14 +60,26 @@
     "Those three technical groups work in parallel and bring their work together throughout the build, with the shared goal of a robot that can drive, aim and fire with the referee system functioning.",
     "With those responsibilities defined, the next slides introduce the people who will lead each group."
   ],
+  "12": [
+    "Math graduating 2029",
+    "Will be handling software, vision, etc",
+    "Am a founding product engineer at a us-based startup serving 80k MAU, 10k DAU",
+    "Also was a founding engineer at an alumni mentoring platform serving 10k MAU in highschool",
+    "Also founded YM Robotics, handled some building, software, and driving",
+    "Have quite some experience with raspberry pi, arduino, intel realsense, and custom pcb design",
+    "Love going to hackathons",
+    "Won 1st place in the education track at stanford treehacks earlier this year",
+    "Also won tracks at UTRAHacks 2025, 2026, UofTHacks 2026, and more."
+  ],
   "13": [
-    "Now, concerning how general members would participate, our intention is to keep membership open across all four groups.",
-    "We want students to have a way into the team even if they haven’t worked on a robot before. That means giving beginners defined tasks and guidance, while experienced members can take on larger pieces of subsystem work.",
-    "In particular, we think ARC would be attractive to students coming from high-school FRC and VEX teams who are looking for a natural transition into university robotics.",
-    "That gives us a useful recruitment opportunity: those students already understand aspects of building, programming and competing, and they’re looking for somewhere to continue.",
-    "Their experience can also help newer members get up to speed through shared projects and technical guidance.",
-    "Of course, open membership still needs active management. Each group lead will assign work, guide members and review progress, with responsibility growing according to skills and commitment.",
-    "That lets us welcome new people while keeping the work connected to the timeline we’ve set."
+    "Last year as a first year, coming from the VEX robotics competition in highschool",
+    "Looking for similar competitive robotics teams at UofT, but was disappointed there was none that was similar to FRC/VEX",
+    "Could see all these other schools (like Mcmaster, Ontario Tech, UBC, UAlberta, etc...) with ARC Robotics teams",
+    "uoft doesn't have any team like it",
+    "We aim to fill in this gap for the people coming from highschool with experience in FRC and VEX, looking for similar",
+    "All four subgroups will be free to join by any student, regardless of experience",
+    "we will give scoped tasks for beginners, and heavier work for experienced members (essentially what they're used to)",
+    "group leads will assign the tasks and provide support, and each lead will increase responsibility as members demonstrate their skills and commitment"
   ],
   "14": [
     "Given that division of responsibilities and our recruitment approach, this is how we see the work progressing from now to competition.",
@@ -80,9 +92,15 @@
     "The exact dates will depend on the published competition schedule. What we want to establish is a working robot early enough that testing and preparation have their own time, rather than being squeezed into the days before competition."
   ],
   "15": [
-    "Finally, we looked at safety, starting with the projectile itself. At 3.2 grams and 25 metres per second, it carries 1 joule of energy, or approximately 0.44 joules per square centimetre.",
-    "To understand what that means for potential injury, we compared it with Duma’s eye-impact study. Our calculated value is roughly three times the study’s benchmark for a 50% risk of corneal abrasion. That comparison flags direct eye impact as a hazard.",
-    "Based on that, our plan is to test inside UTRA Combat’s wooden box, after confirming it can contain the shots. Any testing outside the enclosure would require everyone present to wear impact-rated safety goggles.",
-    "Alongside those precautions, every member will complete UTRA-required safety training before hands-on work, covering safe testing, emergency stops, and disabling and unloading the robot before accessing it."
+    "We looked at safety, because it's a point of interest for you",
+    "starting with the projectile, at 3.2 grams and 25m/s, it carries 1 joule of energy",
+    "approx 0.44 joules per square centimetre",
+    "to understand what it means, we compared it with an eye-impact study",
+    "our calculated value is roughly three times the study's benchmark for 50% risk of corneal abrasion",
+    "so direct eye impact is a hazard",
+    "based on that, our plan is to test in UTRA Combat's wooden box",
+    "Any testing outside of enclosure would require everyone present to wear safety glasses",
+    "alongside those precautions, every member will be required to complete UTRA-required safety training before hands-on work",
+    "covers safe testing, emergency stops, and safely disabling and unloading the robot before accessing it"
   ]
 }

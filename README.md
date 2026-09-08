@@ -8,7 +8,7 @@ UTRA presentations for the 2026–2027 season. This repository is the source of 
 
 ## Local development
 
-Run `npm ci`, `npm run build`, then `npm start`. Open http://localhost:4173.
+Run `npm ci`, then `npm start`. The start command rebuilds the decks before serving them, so the latest slides are available at http://localhost:4173.
 
 On mobile, use the arrow buttons or swipe left/right. In fullscreen, controls fade after inactivity and reappear on a tap.
 
