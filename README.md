@@ -25,7 +25,7 @@ The updated deck includes per-slide speaking notes from `speaker-notes.json`. Op
 - Texas A&M robot: https://engineering.tamu.edu/news/2023/07/texas-am-robomasters-robotics-team-awarded-at-international-event.html
 - Aaron Huang: https://www.aaronhuang.dev/
 - Aiden Kim: https://www.linkedin.com/in/adnjkm/
-- Evan Yu: https://evanyu.dev/
+- Evan Yu: https://evanyu.dev/ (original deck); the current deck uses a personal photo
 - Max Ma: https://www.linkedin.com/in/xiaoying-ma-6052a23a9/
 
 Photographs belong to their respective owners.
