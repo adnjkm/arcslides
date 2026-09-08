@@ -25,8 +25,13 @@ function App(){
  const initial=Math.max(0,Math.min(Slides.length-1,(parseInt(location.hash.slice(1))||1)-1));
  const [index,setIndex]=useState(initial),[expanded,setExpanded]=useState(false),[scale,setScale]=useState(1),[controlsVisible,setControlsVisible]=useState(true);
  const roots=useRef([]),last=useRef(null),touch=useRef(null),scriptPanel=useRef(null),notesWindow=useRef(null);
- const [scriptOpen,setScriptOpen]=useState(false),[notesTarget,setNotesTarget]=useState(null),[notesError,setNotesError]=useState('');
+ const [scriptOpen,setScriptOpen]=useState(false),[notesTarget,setNotesTarget]=useState(null),[notesError,setNotesError]=useState(''),[inlineNotes,setInlineNotes]=useState(false);
+ const closeInlineNotes=()=>{setScriptOpen(false);setNotesTarget(null);setInlineNotes(false);requestAnimationFrame(()=>document.querySelector('.script-toggle')?.focus());};
  const openNotes=()=>{
+  if(mobile){
+   notesWindow.current?.close();notesWindow.current=null;
+   setInlineNotes(true);setNotesTarget(document.body);setScriptOpen(true);setNotesError('');return;
+  }
   if(notesWindow.current&&!notesWindow.current.closed){notesWindow.current.focus();return;}
   const popup=window.open('','', 'popup=yes,width=1280,height=850,resizable=yes,scrollbars=yes');
   if(!popup){setNotesError('Allow pop-ups for this site to open speaker notes.');return;}
@@ -40,7 +45,7 @@ function App(){
   notesWindow.current=popup;setNotesTarget(target);setScriptOpen(true);setNotesError('');
  };
  useEffect(()=>{
-  if(!scriptOpen)return;
+  if(!scriptOpen||inlineNotes)return;
   const popup=notesWindow.current;
   const closed=()=>{setScriptOpen(false);setNotesTarget(null);notesWindow.current=null;};
   const key=e=>{
@@ -51,7 +56,7 @@ function App(){
   popup.addEventListener('keydown',key);
   const timer=setInterval(()=>{if(popup.closed)closed();},500);
   return()=>{clearInterval(timer);popup.removeEventListener('keydown',key);};
- },[scriptOpen]);
+ },[scriptOpen,inlineNotes]);
  useEffect(()=>{const close=()=>notesWindow.current?.close();window.addEventListener('pagehide',close);return()=>{window.removeEventListener('pagehide',close);close();};},[]);
  useEffect(()=>{if(scriptPanel.current)scriptPanel.current.scrollTop=0;},[index,scriptOpen]);
  const [mobile,setMobile]=useState(()=>matchMedia('(pointer: coarse), (max-width: 760px)').matches);
@@ -78,7 +83,7 @@ function App(){
   try{await document.documentElement.requestFullscreen?.();}catch{}
  };
  useEffect(()=>{const change=()=>setExpanded(!!document.fullscreenElement);document.addEventListener('fullscreenchange',change);return()=>document.removeEventListener('fullscreenchange',change);},[]);
- useEffect(()=>{const key=e=>{if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;if(e.key===' '&&e.target.closest('button'))return;const k=e.key;if(e.target.closest('.script-panel')&&['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(k))return;if(k.toLowerCase()==='s'&&speakerNotes){e.preventDefault();openNotes();return;}if(['ArrowRight','ArrowLeft','PageDown','PageUp',' ','Home','End'].includes(k))e.preventDefault();if(['ArrowRight','PageDown',' '].includes(k))go(n=>n+1);if(['ArrowLeft','PageUp'].includes(k))go(n=>n-1);if(k==='Home')go(0);if(k==='End')go(Slides.length-1);if(k.toLowerCase()==='f')fullscreen();if(k==='Escape')setExpanded(false);};addEventListener('keydown',key);return()=>removeEventListener('keydown',key);},[index,expanded,scriptOpen]);
+ useEffect(()=>{const key=e=>{if(e.target.closest('input,textarea,select,[contenteditable=true]'))return;if(e.key===' '&&e.target.closest('button'))return;const k=e.key;if(k==='Escape'&&inlineNotes){e.preventDefault();closeInlineNotes();return;}if(e.target.closest('.script-panel')&&['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(k))return;if(k.toLowerCase()==='s'&&speakerNotes){e.preventDefault();openNotes();return;}if(['ArrowRight','ArrowLeft','PageDown','PageUp',' ','Home','End'].includes(k))e.preventDefault();if(['ArrowRight','PageDown',' '].includes(k))go(n=>n+1);if(['ArrowLeft','PageUp'].includes(k))go(n=>n-1);if(k==='Home')go(0);if(k==='End')go(Slides.length-1);if(k.toLowerCase()==='f')fullscreen();if(k==='Escape')setExpanded(false);};addEventListener('keydown',key);return()=>removeEventListener('keydown',key);},[index,expanded,scriptOpen,mobile,inlineNotes]);
  useEffect(()=>{const fn=()=>go((parseInt(location.hash.slice(1))||1)-1);addEventListener('hashchange',fn);return()=>removeEventListener('hashchange',fn);},[]);
  useLayoutEffect(()=>{
   const old=last.current;
@@ -96,12 +101,13 @@ function App(){
   return()=>animation.cancel();
  },[index]);
 
- return <main className={mobile?'mobile':''} onTouchStart={e=>{touch.current=e.touches.length===1&&!e.target.closest('button,.script-panel')?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null;}} onTouchCancel={()=>touch.current=null} onTouchEnd={e=>{const start=touch.current;touch.current=null;if(!start)return;const end=e.changedTouches[0],dx=end.clientX-start.x,dy=end.clientY-start.y;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3)go(n=>n+(dx<0?1:-1));}}>
+ return <main inert={inlineNotes} className={mobile?'mobile':''} onTouchStart={e=>{touch.current=e.touches.length===1&&!e.target.closest('button,.script-panel,.presenter-view')?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null;}} onTouchCancel={()=>touch.current=null} onTouchEnd={e=>{const start=touch.current;touch.current=null;if(!start)return;const end=e.changedTouches[0],dx=end.clientX-start.x,dy=end.clientY-start.y;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3)go(n=>n+(dx<0?1:-1));}}>
   <div className="presentation" style={{width:1440*scale}}>
   <div className="progress" role="progressbar" aria-label="Presentation progress" aria-valuemin={1} aria-valuemax={Slides.length} aria-valuenow={index+1}><div style={{width:`${(index+1)/Slides.length*100}%`}}/></div>
   <div className="stage" style={{width:1440*scale,height:754*scale}}><div className="canvas" style={{transform:`scale(${scale})`}}>{Slides.map((Slide,i)=><section ref={el=>roots.current[i]=el} className="slide" key={i} aria-label={`Slide ${i+1}: ${titles[i]}`} aria-hidden={i!==index} inert={i!==index}><Slide/></section>)}</div></div>
   </div>
-  {speakerNotes&&scriptOpen&&notesTarget&&createPortal(<div className="presenter-view">
+  {speakerNotes&&scriptOpen&&notesTarget&&createPortal(<div className={inlineNotes?'notes-window presenter-inline':'notes-window'} role={inlineNotes?'dialog':undefined} aria-modal={inlineNotes?true:undefined} aria-label="Presenter view"><div className="presenter-view">
+   {inlineNotes&&<div className="notes-navigation"><button autoFocus onClick={closeInlineNotes}>Back to slides</button></div>}
    <nav className="notes-navigation" aria-label="Slide navigation">
     <button onClick={()=>go(n=>n-1)} disabled={index===0}>Previous</button>
     <span>Slide {index+1} of {Slides.length}</span>
@@ -117,9 +123,9 @@ function App(){
    <h2 className="presenter-label">Speaker notes</h2>
    <h2>{titles[index]}</h2>
    {speakerNotes[index+1]?.length?<ul>{speakerNotes[index+1].map((text,i)=><li key={`${index}-${i}`}>{text}</li>)}</ul>:<p>No script added for this slide.</p>}
-  </aside></div></div></div>,notesTarget)}
+  </aside></div></div></div></div>,notesTarget)}
   {notesError&&<p className="notes-error" role="alert">{notesError}</p>}
-  {speakerNotes&&<button className={`fullscreen script-toggle${expanded&&!controlsVisible?' controls-hidden':''}`} onClick={openNotes} aria-label={scriptOpen?'Focus speaker notes window':'Open speaker notes window'} aria-pressed={scriptOpen} title="Open speaker notes window (S)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H5V3h1Zm8 0v5h5M8 12h8M8 16h8"/></svg></button>}
+  {speakerNotes&&<button className={`fullscreen script-toggle${expanded&&!controlsVisible?' controls-hidden':''}`} onClick={openNotes} aria-label={mobile?'Open presenter view':scriptOpen?'Focus speaker notes window':'Open speaker notes window'} aria-pressed={scriptOpen} title={mobile?"Open presenter view (S)":"Open speaker notes window (S)"}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H5V3h1Zm8 0v5h5M8 12h8M8 16h8"/></svg></button>}
   {mobile&&<nav className={`mobile-navigation${expanded&&!controlsVisible?' controls-hidden':''}`} aria-label="Slide navigation">
    <button onClick={()=>go(n=>n-1)} disabled={index===0} aria-label="Previous slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
    <button onClick={()=>go(n=>n+1)} disabled={index===Slides.length-1} aria-label="Next slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>

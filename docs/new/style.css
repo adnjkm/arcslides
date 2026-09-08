@@ -49,3 +49,13 @@ main{touch-action:pan-y pinch-zoom}
 .presenter-view .script-panel li{margin-bottom:14px}
 .presenter-view .script-panel h2{margin-bottom:16px}
 @media(max-width:800px){.presenter-current{overflow:visible}.presenter-next{width:32%}.presenter-sidebar{min-height:0}.notes-window .presenter-view .script-panel{flex:none;max-height:none;overflow:visible}}
+
+.presenter-inline{position:fixed;inset:0;z-index:10;overflow:auto;overscroll-behavior:contain;touch-action:pan-y pinch-zoom}
+.presenter-inline .presenter-view{height:auto;min-height:100dvh;padding: max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.presenter-inline .presenter-layout{grid-template-columns:1fr}
+.presenter-inline .presenter-current{overflow:visible}
+.presenter-inline .presenter-next{display:none}
+.presenter-inline .presenter-sidebar{min-height:0}
+.presenter-inline .presenter-view .script-panel{position:static;width:100%;flex:none;max-height:none;overflow:visible;font-size:17px;padding:16px}
+.presenter-inline .notes-navigation button{min-height:44px}
+@media(max-width:800px),(pointer:coarse){.presenter-next{display:none}}
