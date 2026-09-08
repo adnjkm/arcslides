@@ -3,7 +3,7 @@
 UTRA presentations for the 2026–2027 season. This repository is the source of truth for the web decks.
 
 - Original ten-slide deck: https://adnjkm.github.io/arcslides/
-- Updated fifteen-slide deck: https://adnjkm.github.io/arcslides/new/
+- Updated sixteen-slide deck: https://adnjkm.github.io/arcslides/new/
 - Paper: https://app.paper.design/file/01M1SD0MFZ25RD9PR8Z3HV18KJ/1-0
 
 ## Local development

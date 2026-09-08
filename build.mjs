@@ -17,7 +17,7 @@ const assets={
 '1SHK5ZWV9GBZS83X7KMRTXH9XT.jpg':'evan.jpg',
 '6ZH32VC2WMG7HAE46DBV9NS2FA.jpg':'max.jpg'
 };
-const currentTitles=["Subteam overview", "ARC Robotics and our first season", "Aaron Huang", "Robot requirements", "Robot design", "Aiden Kim", "Robot budget detail", "Budget visualization", "Funding plan", "Max Ma", "Responsibilities", "Evan Yu", "Open recruitment", "Timeline", "Safety"];
+const currentTitles=["Subteam overview", "ARC Robotics and our first season", "Aaron Huang", "Robot requirements", "Robot design", "Aiden Kim", "Robot budget detail", "Budget visualization", "Funding plan", "Max Ma", "Responsibilities", "Evan Yu", "Open recruitment", "Timeline", "Safety", "Conclusion"];
 const originalTitles=['Subteam overview','ARC Robotics and our first season','Robot requirements','Robot design','Budget','Responsibilities','Founding team','Timeline','Safety','Talking points'];
 const app=fs.readFileSync('app.jsx','utf8');
 const template=fs.readFileSync('index.html','utf8');
