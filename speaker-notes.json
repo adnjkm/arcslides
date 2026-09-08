@@ -6,7 +6,7 @@
     "For our team, we’ve chosen to focus on 1v1 Infantry. With one robot and one pilot, we can concentrate our first season on building one complete, reliable robot and keep the coordination between systems manageable.",
     "Looking at the previous competition schedule, we think targeting the 2026–2027 season, with competition around late June or early July 2027, gives us a reasonable planning window. The exact dates and venue are still unconfirmed."
   ],
-  "3": [
+  "4": [
     "Stemming from that interest in ARC, the first thing we did was look at the fundamental requirements for a robot in the 1v1 event. We used the 2026 rulebook as our starting point, since the next version isn’t available yet.",
     "Importantly, there are four areas that directly affect what we need to build.",
     "For the chassis and structure, we’re working within a 600 mm starting cube and a 25 kg weight limit, excluding referee hardware. Those constraints shape the size and arrangement of the robot.",
@@ -15,7 +15,7 @@
     "And finally, we need to incorporate the referee system and pass the required motion and firing tests.",
     "Those requirements gave us the boundaries for the design decisions on the next slide."
   ],
-  "4": [
+  "5": [
     "In addition to those constraints, we’ve already made some initial design decisions of our own, based on what we think is achievable between now and competition day.",
     "Making those decisions early also gives us something concrete to plan around: we can identify parts, estimate costs and divide up the work.",
     "Starting on the left, the pilot will issue commands from a laptop, with a Type C board handling robot control.",
@@ -25,13 +25,13 @@
     "For firing, we’re planning a motorized feeder supplying a single 17 mm launcher.",
     "Finally, we’ve included a possible vision-assistance system using an OV9782 camera, Raspberry Pi 5 and Hailo AI HAT+. That comes after establishing reliable manual operation, so our ability to compete doesn’t depend on finishing vision assistance."
   ],
-  "5": [
+  "7": [
     "Based on both the competition constraints and those design decisions, we’ve already assessed the parts needed to build our intended robot.",
     "We’ve gone through the subsystems and budgeted the components and materials we currently expect to need, including the motors, electronics, referee hardware and charging equipment.",
     "That gives us the itemized budget shown here, coming to C$4,944, or approximately C$5,000 for the robot itself.",
     "But building the robot is only one part of getting to competition, so we’ve also looked at the costs of attending."
   ],
-  "6": [
+  "8": [
     "In addition to the robot budget, we’ve estimated competition expenses using the previous venue as a reference, since the next venue hasn’t been announced.",
     "Using Purdue’s 2026 venue, we estimated 1,632 km of robot transport. At the C$0.50-per-kilometre rate quoted by Ryan Hammer, that comes to C$816.",
     "We’ve also included approximately C$208 for registration, bringing registration and robot transport to about C$1,024.",
@@ -39,7 +39,7 @@
     "We therefore estimate approximately C$5,967 for the robot, registration and robot transport, plus C$810 per traveller.",
     "That’s our current planning figure. Taxes, shipping, import duties, accommodation, meals and baggage still need to be accounted for, and the travel estimates will change once the venue and dates are confirmed."
   ],
-  "7": [
+  "9": [
     "Now, to meet the financial requirements of both building the robot and competing, we’ve thought through how we intend to fund the project.",
     "Importantly, we understand UTRA has limited funds and existing teams to support. Our plan is to lead our own fundraising and bring new support into ARC and UTRA, without drawing on UTRA’s existing pool.",
     "On sponsorship, we already have a concrete lead in Sable Metal, where we would request sheet metal, laser cutting and forming. That support isn’t confirmed for ARC yet, but we know what we would ask for and where it fits into our design.",
@@ -50,7 +50,7 @@
     "For CPSIF, the connection is engineering engagement, inclusive participation and a justified budget. Our motors, controllers and materials support hands-on design and testing, and our recruitment approach gives students a way to participate in that work.",
     "So the contribution to UTRA would go beyond funding our own robot. We would bring a costed project and supporting evidence for funding applications, while taking responsibility for pursuing those opportunities. Awards would still be subject to review."
   ],
-  "8": [
+  "11": [
     "With the costs and our approach to funding laid out, we can get into how we intend to take the robot from a design to a finished build.",
     "Our plan is to divide responsibility within the subteam into four groups.",
     "Administration sits across the project, handling fundraising, sponsors, purchasing and competition logistics so the technical work can move forward.",

@@ -1,6 +1,6 @@
 # ARC Robotics slides
 
-UTRA presentations for the 2026–2027 season, exported from Paper.
+UTRA presentations for the 2026–2027 season. This repository is the source of truth for the web decks.
 
 - Original ten-slide deck: https://adnjkm.github.io/arcslides/
 - Updated fifteen-slide deck: https://adnjkm.github.io/arcslides/new/
@@ -16,7 +16,7 @@ Use arrow keys or Space to advance and F or the fullscreen icon to expand the pr
 
 The updated deck includes per-slide speaking notes from `speaker-notes.json`. Open the separate speaker notes window with the script icon or S. On mobile, the notes icon opens presenter view in the same page; use Back to slides to close it. Mobile presenter view hides the next-slide preview. The desktop presenter view shows the current slide, an upcoming slide preview, and scrollable speaker notes. Everything stays synced with the current slide; use Previous/Next or the left/right arrow keys in the notes window to control the presentation. Escape in the notes window closes it. Slides without notes show an empty-state message.
 
-`paper-export.json` contains the current Paper snapshot; `paper-export-original.json` preserves the previous deck. `build.mjs` creates the React slides and the static `docs/` site. Re-export Paper to incorporate design changes, then run `npm run build` and commit the updated files. GitHub Pages publishes `docs/` from `main`.
+`slides-data.json` contains the current deck content in presentation order; edit it directly rather than re-exporting Paper. `paper-export-original.json` preserves the original deck. Keep `currentTitles` in `build.mjs` and slide-number keys in `speaker-notes.json` aligned when reordering. `build.mjs` creates the React slides and static `docs/` site. Run `npm run build` and commit the updated files. GitHub Pages publishes `docs/` from `main`.
 
 ## Image sources
 
