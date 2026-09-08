@@ -35,12 +35,17 @@ main{touch-action:pan-y pinch-zoom}
 
 .notes-window .presenter-view{height:100dvh;display:flex;flex-direction:column;padding:24px;gap:20px}
 .presenter-view .notes-navigation{margin:0;flex-shrink:0}
-.presenter-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(320px,1fr);gap:28px;flex:1;min-height:0}
-.presenter-current{min-width:0;overflow:auto}
+.presenter-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,1fr);gap:20px;flex:1;min-height:0}
+.presenter-current{min-width:0;overflow:auto;display:flex;flex-direction:column;gap:24px}
+.presenter-next{width:42%;max-width:280px}
 .presenter-sidebar{display:flex;flex-direction:column;gap:24px;min-height:0;min-width:0}
 .presenter-label{font-size:12px!important;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#a4aab7;margin:0 0 12px!important}
 .presenter-slide-frame{position:relative;width:100%;aspect-ratio:1440/754;overflow:hidden;background:#f5f7fa;border-radius:4px}
 .presenter-preview{min-width:0;flex-shrink:0}
-.notes-window .presenter-view .script-panel{min-height:0;flex:1;overflow-y:auto;padding:20px;background:#1e2128;border:1px solid #ffffff14;border-radius:8px;font-size:18px}
+.notes-window .presenter-view .script-panel{min-height:0;flex:1;overflow-y:auto;padding:20px;background:#1e2128;border:1px solid #ffffff14;border-radius:8px;font-size:18px;line-height:1.5;overflow-wrap:anywhere;scrollbar-gutter:stable}
 .presenter-end{color:#a4aab7;margin:0}
 @media(max-width:800px){.notes-window .presenter-view{height:auto;min-height:100dvh;padding:16px}.presenter-layout{grid-template-columns:1fr}.presenter-sidebar{min-height:400px}.notes-window .presenter-view .script-panel{max-height:60vh}}
+
+.presenter-view .script-panel li{margin-bottom:14px}
+.presenter-view .script-panel h2{margin-bottom:16px}
+@media(max-width:800px){.presenter-current{overflow:visible}.presenter-next{width:32%}.presenter-sidebar{min-height:0}.notes-window .presenter-view .script-panel{flex:none;max-height:none;overflow:visible}}

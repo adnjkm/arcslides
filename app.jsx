@@ -108,9 +108,11 @@ function App(){
     <button onClick={()=>go(n=>n+1)} disabled={index===Slides.length-1}>Next</button>
    </nav>
    <div className="presenter-layout">
-    <div className="presenter-current"><SlidePreview index={index} label="Current slide"/></div>
+    <div className="presenter-current">
+     <SlidePreview index={index} label="Current slide"/>
+     <div className="presenter-next">{index<Slides.length-1?<SlidePreview index={index+1} label="Up next"/>:<p className="presenter-end">End of presentation</p>}</div>
+    </div>
     <div className="presenter-sidebar">
-     {index<Slides.length-1?<SlidePreview index={index+1} label="Up next"/>:<p className="presenter-end">End of presentation</p>}
      <aside id="speaker-script" ref={scriptPanel} className="script-panel" role="region" aria-label="Current slide script" tabIndex={0}>
    <h2 className="presenter-label">Speaker notes</h2>
    <h2>{titles[index]}</h2>
